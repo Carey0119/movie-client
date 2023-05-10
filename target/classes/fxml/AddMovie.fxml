@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.RegexValidator?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myjavafx.movieclient.controller.MovieManagerController">
+  <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.0" minWidth="10.0" prefWidth="45.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.0" minWidth="10.0" prefWidth="525.0" />
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="568.0" minWidth="10.0" prefWidth="53.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="128.0" minHeight="0.0" prefHeight="47.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="304.0" minHeight="10.0" prefHeight="297.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="543.0" GridPane.columnIndex="1">
+         <children>
+            <Label text="添加电影">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <children>
+            <Button minWidth="80.0" mnemonicParsing="false" onAction="#addMovieAction" styleClass="btn" text="添加">
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+             <Button minWidth="80.0" mnemonicParsing="false" onAction="#closeButtonAction" styleClass="btn" text="关闭">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font></Button>
+         </children>
+      </HBox>
+      <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="347.0" minWidth="10.0" prefWidth="225.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="431.0" minWidth="10.0" prefWidth="22.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="431.0" minWidth="10.0" prefWidth="246.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="92.0" minHeight="10.0" prefHeight="64.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="79.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="95.0" minHeight="10.0" prefHeight="71.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="93.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="105.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <JFXTextArea fx:id="movieDescTextArea" prefWidth="254.0" promptText="电影简介"  labelFloat="true" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.rowSpan="4">
+                <font>
+                    <Font size="18.0" />
+                </font>
+                <validators>
+                    <RequiredFieldValidator message="请输入电影简介">
+                        <FontIcon iconLiteral="fas-exclamation-triangle" />
+                    </RequiredFieldValidator>
+                    <RegexValidator message="请输入10-5000个字电影类型" regexPattern="^[^\x00-\xff]{10,5000}$">
+                        <FontIcon iconLiteral="fas-exclamation-triangle" />
+                    </RegexValidator>
+                </validators>
+            </JFXTextArea>
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
+               <children>
+                  <Label fx:id="imagePathLabel" />
+                  <Button fx:id="picButton" minWidth="50.0" mnemonicParsing="false" onAction="#openFileAction" styleClass="btn" text="图片" />
+               </children>
+            </HBox>
+             <JFXTextField id="login-text-field" fx:id="movieNameTextField" labelFloat="true" maxWidth="1.7976931348623157E308" prefWidth="240.0" promptText="电影名称" GridPane.rowIndex="1">
+                 <font>
+                     <Font size="18.0" />
+                 </font>
+                 <validators>
+                     <RequiredFieldValidator message="请输入电影名称">
+                         <FontIcon iconLiteral="fas-exclamation-triangle" />
+                     </RequiredFieldValidator>
+                     <RegexValidator message="请输入2-50个字电影名称" regexPattern="^[^\x00-\xff]{2,50}$">
+                         <FontIcon iconLiteral="fas-exclamation-triangle" />
+                     </RegexValidator>
+                 </validators>
+             </JFXTextField>
+             <JFXTextField id="login-text-field" fx:id="actorTextField" labelFloat="true" maxWidth="1.7976931348623157E308" prefWidth="240.0" promptText="主演" GridPane.rowIndex="2">
+                 <font>
+                     <Font size="18.0" />
+                 </font>
+                 <validators>
+                     <RequiredFieldValidator message="请输入主演">
+                         <FontIcon iconLiteral="fas-exclamation-triangle" />
+                     </RequiredFieldValidator>
+                     <RegexValidator message="请输入2-50个字主演" regexPattern="^[^\x00-\xff]{2,50}$">
+                         <FontIcon iconLiteral="fas-exclamation-triangle" />
+                     </RegexValidator>
+                 </validators>
+             </JFXTextField>
+             <JFXTextField id="login-text-field" fx:id="movieTypeTextField" labelFloat="true" maxWidth="1.7976931348623157E308" prefWidth="240.0" promptText="电影类型" GridPane.rowIndex="3">
+                 <font>
+                     <Font size="18.0" />
+                 </font>
+                 <validators>
+                     <RequiredFieldValidator message="请输入电影类型">
+                         <FontIcon iconLiteral="fas-exclamation-triangle" />
+                     </RequiredFieldValidator>
+                     <RegexValidator message="请输入2-50个字电影类型" regexPattern="^[^\x00-\xff]{2,50}$">
+                         <FontIcon iconLiteral="fas-exclamation-triangle" />
+                     </RegexValidator>
+                 </validators>
+             </JFXTextField>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="5">
+               <children>
+                  <Label fx:id="errorLabel" textFill="RED" />
+               </children>
+            </HBox>
+         </children>
+      </GridPane>
+   </children>
+    <stylesheets>
+        <URL value="@/css/theme.css" />
+    </stylesheets>
+</GridPane>

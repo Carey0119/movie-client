@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.myjavafx</groupId>
+    <artifactId>movie-client</artifactId>
+    <version>1.0.1</version>
+    <name>movie-client</name>
+    <description>My javafx movie client project for Spring Boot</description>
+    <properties>
+        <java.version>1.8</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <scope>runtime</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- 打包工具 -->
+        <dependency>
+            <groupId>com.zenjava</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>8.8.3</version>
+        </dependency>
+        <!-- springboot-javafx -->
+        <dependency>
+            <groupId>de.roskenet</groupId>
+            <artifactId>springboot-javafx-support</artifactId>
+            <version>2.1.5</version>
+        </dependency>
+        <!-- 网络请求 -->
+        <dependency>
+            <groupId>com.github.lianjiatech</groupId>
+            <artifactId>retrofit-spring-boot-starter</artifactId>
+            <version>2.3.6</version>
+        </dependency>
+        <!-- 序列化 -->
+        <dependency>
+            <groupId>com.squareup.retrofit2</groupId>
+            <artifactId>converter-gson</artifactId>
+            <version>2.6.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.2</version>
+            <scope>test</scope>
+        </dependency>
+        <!--ui 组件 9x以上不支持java8-->
+        <dependency>
+            <groupId>com.jfoenix</groupId>
+            <artifactId>jfoenix</artifactId>
+            <version>8.0.10</version>
+        </dependency>
+        <!--图标库 高版本不支持java8-->
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-javafx</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kordamp.ikonli</groupId>
+            <artifactId>ikonli-fontawesome5-pack</artifactId>
+            <version>2.6.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+<!--                详细文档：https://docs.oracle.com/javase/9/tools/javapackager.htm#JSWOR719-->
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.myjavafx.movieclient.MovieClientApplication</mainClass>
+                    <!-- 公司名称 -->
+                    <vendor>Ceadeal</vendor>
+                    <!-- 应用名称 ${project.build.finalName} = ${project.artifactId}-${project.version} -->
+                   <appName>movie</appName>
+                    <!-- 发行版本 -->
+                    <nativeReleaseVersion>${project.version}</nativeReleaseVersion>
+                    <bundleArguments>
+                        <!-- mac 图标-->
+                        <icon.icns>${project.basedir}/src/main/resources/images/icons/icon.icns</icon.icns>
+                        <!-- windows 图标-->
+                        <icon.ico>${project.basedir}/src/main/resources/images/icons/icon.ico</icon.ico>
+                        <!--Linux-->
+                        <icon.png>${project.basedir}/src/main/resources/images/icons/icon.png</icon.png>
+                        <!--下面这2个参数搭配，可实现一个特别重要的功能，就是，提示用户手动选择程序安装目录，默认目录是在:C:\Program Files (x86)\appName-->
+                        <!--设置为true将在Program Files中安装应用程序。设置为false将应用程序安装到用户的主目录中。默认值为false。-->
+                        <systemWide>true</systemWide>
+                        <!-- 让用户选择安装目标文件夹 -->
+                        <installdirChooser>true</installdirChooser>
+                    </bundleArguments>
+                    <!-- 桌面图标 -->
+                    <needShortcut>true</needShortcut>
+                    <!-- 菜单设置 -->
+                    <needMenu>true</needMenu>
+
+                    <!--排除掉不想要打包进lib依赖库的依赖-->
+                    <classpathExcludes>
+                        <classpathExclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </classpathExclude>
+                    </classpathExcludes>
+
+                </configuration>
+
+            </plugin>
+
+        </plugins>
+
+    </build>
+
+
+</project>

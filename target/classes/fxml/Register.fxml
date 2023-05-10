@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.RegexValidator?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<?import java.net.URL?>
+<StackPane fx:id="rootPane" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myjavafx.movieclient.controller.RegisterController">
+    <children>
+        <Pane fx:id="imagePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+         <effect>
+            <Shadow color="#00000026" height="69.57" radius="38.84" width="87.79" />
+         </effect></Pane>
+        <StackPane fx:id="centerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0" style="-fx-background-radius: 14;" visible="false">
+            <effect>
+                <DropShadow color="#0000009e" height="180.1" radius="89.9975" width="181.89" />
+            </effect>
+        </StackPane>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <top>
+            <VBox alignment="TOP_CENTER" prefHeight="78.0" prefWidth="650.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label text="注册">
+                     <font>
+                        <Font size="33.0" />
+                     </font>
+                  </Label>
+                   <JFXProgressBar fx:id="loadingBar" styleClass="progress-bar" prefHeight="0.0" prefWidth="736.0" visible="true" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </VBox>
+         </top>
+         <bottom>
+            <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                          <JFXButton fx:id="backBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#backBtnAction" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(#3c78d8, #6fa8dc); -fx-background-radius: 25;" text="返回" textFill="#fffefe">
+                              <font>
+                                  <Font size="18.0" />
+                              </font>
+                          </JFXButton>
+                  <JFXButton fx:id="registerBtn" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#registerBtnAction" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: linear-gradient(#3c78d8, #6fa8dc); -fx-background-radius: 25;" text="注册" textFill="#fffefe">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets left="30.0" />
+                     </HBox.margin>
+                  </JFXButton>
+               </children>
+            </HBox>
+         </bottom>
+         <center>
+            <GridPane alignment="TOP_CENTER" prefHeight="267.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="290.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="17.739501953125" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="300.0" minWidth="10.0" prefWidth="292.260498046875" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="10.0" prefWidth="20.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="73.53291320800781" minHeight="10.0" prefHeight="69.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="88.03887939453125" minHeight="0.0" prefHeight="88.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="110.80838012695312" minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                            <JFXTextField id="login-text-field" fx:id="userNameTextField" labelFloat="true" maxWidth="1.7976931348623157E308" prefWidth="240.0" promptText="用户名" GridPane.columnIndex="1">
+                                <font>
+                                    <Font size="18.0" />
+                                </font>
+                                <validators>
+                                    <RequiredFieldValidator message="请输入用户名">
+                                        <FontIcon iconLiteral="fas-exclamation-triangle" />
+                                    </RequiredFieldValidator>
+                                    <RegexValidator message="请输入2-50个字长度的英文账号" regexPattern="^[A-Za-z]{2,50}$">
+                                        <FontIcon iconLiteral="fas-exclamation-triangle" />
+                                    </RegexValidator>
+                                </validators>
+                            </JFXTextField>
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3">
+                     <children>
+                        <JFXTextField fx:id="ageTextField" labelFloat="true" prefWidth="120.0" promptText="年龄">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                            <validators>
+                                <RequiredFieldValidator message="请输入年龄">
+                                    <FontIcon iconLiteral="fas-exclamation-triangle" />
+                                </RequiredFieldValidator>
+                                <RegexValidator message="请输入1-150" regexPattern="^[1-9]{1,2}|1[0-4]\d|150$">
+                                    <FontIcon iconLiteral="fas-exclamation-triangle" />
+                                </RegexValidator>
+                            </validators>
+                        </JFXTextField>
+                        <JFXComboBox fx:id="sexComboBox"  labelFloat="true" promptText="性别">
+                           <padding>
+                              <Insets left="25.0" top="8.0" />
+                           </padding>
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <Label>
+                                        男
+                                    </Label>
+                                    <Label>
+                                        女
+                                    </Label>
+                                </FXCollections>
+                            </items>
+                            <validators>
+                                <RequiredFieldValidator message="请选择年龄">
+                                    <FontIcon iconLiteral="fas-exclamation-triangle" styleClass="error-icon" />
+                                </RequiredFieldValidator>
+                            </validators>
+                        </JFXComboBox>
+                     </children>
+                  </HBox>
+                  <JFXPasswordField fx:id="passwordTextField" labelFloat="true" promptText="用户密码" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                      <validators>
+                          <RequiredFieldValidator message="请输入用户密码">
+                              <FontIcon iconLiteral="fas-exclamation-triangle" />
+                          </RequiredFieldValidator>
+                          <RegexValidator message="请输入6位数或以上的密码" regexPattern="^\w{6,}$">
+                              <FontIcon iconLiteral="fas-exclamation-triangle" />
+                          </RegexValidator>
+                      </validators>
+                  </JFXPasswordField>
+                  <JFXPasswordField fx:id="rePasswordTextField" labelFloat="true" promptText="确认密码" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                      <validators>
+                          <RequiredFieldValidator message="请再次输入密码">
+                              <FontIcon iconLiteral="fas-exclamation-triangle" />
+                          </RequiredFieldValidator>
+                          <RegexValidator fx:id="rePasswordRegexValidator" message="两次输入的密码不一致" />
+                      </validators>
+                  </JFXPasswordField>
+                  <JFXTextField fx:id="addressTextField" labelFloat="true" promptText="家庭地址" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                    <validators>
+                        <RegexValidator message="家庭地址在200个字以内" regexPattern=".{0,200}$" />
+                    </validators>
+                  </JFXTextField>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="4" GridPane.rowIndex="3">
+                     <children>
+                        <Label fx:id="errorLabel" alignment="CENTER" text="" textFill="RED" visible="false" />
+                     </children>
+                  </HBox>
+               </children>
+            </GridPane>
+         </center>
+      </BorderPane>
+    </children>
+    <stylesheets>
+        <URL value="@/css/theme.css" />
+    </stylesheets>
+</StackPane>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXProgressBar?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.RegexValidator?>
+<?import com.jfoenix.validation.RequiredFieldValidator?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane fx:id="rootPane" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.myjavafx.movieclient.controller.LoginController">
+    <children>
+        <Pane fx:id="imagePane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.0" prefHeight="200.0" prefWidth="200.0">
+         <effect>
+            <Shadow color="#00000026" height="69.57" radius="38.84" width="87.79" />
+         </effect></Pane>
+        <StackPane fx:id="centerPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="650.0">
+            <children>
+                <HBox fx:id="loginPane" style="-fx-background-color: #ffffff;">
+                    <children>
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="251.0" style="-fx-background-color: linear-gradient(#3c78d8, #6fa8dc);">
+                            <children>
+                                <Label id="login-welcome-title" layoutX="70.0" layoutY="134.0" text="欢迎" textFill="WHITE">
+                                    <font>
+                                        <Font size="48.0" />
+                                    </font>
+                                </Label>
+                                <Label id="login-welcome-text" layoutX="38.0" layoutY="213.0" text="登录访问您的帐户" textFill="WHITE">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                                <Label layoutX="79.0" layoutY="419.0" text="电影管理系统" textFill="#ffffffad" />
+                            </children>
+                            <effect>
+                                <DropShadow color="#000000b2" height="68.0" radius="49.0" width="130.0" />
+                            </effect>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="450.0" prefWidth="352.0" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label id="login-title" layoutX="168.0" layoutY="45.0" text="登录">
+                                    <font>
+                                        <Font name="System Bold" size="33.0" />
+                                    </font>
+                                </Label>
+                                <JFXProgressBar fx:id="loadingBar" layoutX="66.0" layoutY="83.0" styleClass="progress-bar" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+                                <VBox layoutX="71.0" layoutY="96.0" prefHeight="157.0" prefWidth="260.0" spacing="45.0">
+                                    <children>
+                                        <JFXTextField id="login-text-field" fx:id="userNameTextField" labelFloat="true" maxWidth="1.7976931348623157E308" prefWidth="260.0" promptText="用户名">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                            <validators>
+                                                <RequiredFieldValidator message="请输入用户名">
+                                                    <FontIcon iconLiteral="fas-exclamation-triangle" />
+                                                </RequiredFieldValidator>
+                                                <RegexValidator message="请输入2-50个字长度的英文账号" regexPattern="^[A-Za-z]{2,50}$">
+                                                    <FontIcon iconLiteral="fas-exclamation-triangle" />
+                                                </RegexValidator>
+                                            </validators>
+                                        </JFXTextField>
+                                        <JFXPasswordField id="login-text-field" fx:id="passWordTextField" labelFloat="true" maxWidth="1.7976931348623157E308" promptText="密码">
+                                            <font>
+                                                <Font size="18.0" />
+                                            </font>
+                                            <validators>
+                                                <RequiredFieldValidator message="请输入密码">
+                                                    <FontIcon iconLiteral="fas-exclamation-triangle" />
+                                                </RequiredFieldValidator>
+                                                <RegexValidator message="请输入6位数或以上的密码" regexPattern="^\w{6,}$">
+                                                    <FontIcon iconLiteral="fas-exclamation-triangle" />
+                                                </RegexValidator>
+                                            </validators>
+                                        </JFXPasswordField>
+                                    </children>
+                                    <padding>
+                                        <Insets top="30.0" />
+                                    </padding>
+                                </VBox>
+                                <JFXButton fx:id="loginBtn" layoutX="71.0" layoutY="326.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#loginBtnAction" prefHeight="50.0" prefWidth="260.0" style="-fx-background-color: linear-gradient(#3c78d8, #6fa8dc); -fx-background-radius: 25;" text="登录" textFill="#fffefe">
+                                    <font>
+                                        <Font size="18.0" />
+                                    </font>
+                                </JFXButton>
+                                <Hyperlink fx:id="registeredLink" layoutX="224.0" layoutY="405.0" onAction="#registeredLinkAction" text="注册" />
+                                <Label id="login-prompt" layoutX="125.0" layoutY="409.0" prefHeight="20.0" prefWidth="116.0" text="还没有帐号?去" />
+                                <VBox alignment="CENTER" layoutY="280.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                                    <children>
+                                        <Label id="login-error-label" fx:id="errorLabel" alignment="CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-text-fill: #ff0000" VBox.vgrow="ALWAYS" />
+                                    </children>
+                                </VBox>
+                                <Label id="icon-label" fx:id="userIcon" alignment="CENTER" contentDisplay="CENTER" layoutX="301.0" layoutY="130.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="35.0" />
+                                <Label id="icon-label" fx:id="pwdIcon" alignment="CENTER" contentDisplay="CENTER" layoutX="300.0" layoutY="210.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="35.0" />
+                                <JFXButton fx:id="rightTopCloseBtn" layoutX="352.0" layoutY="18.0" onAction="#rightTopCloseButtonAction" text="X" />
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </HBox>
+            </children>
+            <effect>
+                <DropShadow color="#0000009e" height="180.1" radius="89.9975" width="181.89" />
+            </effect>
+        </StackPane>
+    </children>
+    <stylesheets>
+        <URL value="@/css/theme.css" />
+    </stylesheets>
+</StackPane>

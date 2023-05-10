@@ -1,0 +1,4 @@
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane prefWidth="600" prefHeight="400">
+
+</BorderPane>

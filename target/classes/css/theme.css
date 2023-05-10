@@ -1,0 +1,141 @@
+.root{
+    -primary   : #4285f4;
+    -dark-gray   : #656D78;
+}
+
+
+.menu{
+    -fx-background-color : #fff;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+}
+.menu .label{
+    -fx-text-fill : #696969;
+}
+.menu_focus{
+    -fx-background-color : #E3E3E3;
+}
+.menu_focus .label{
+    -fx-text-fill: #1C1C1C;
+}
+
+
+
+.scroll-pane
+{
+    -fx-vbar-policy : never;
+}
+
+.scroll-pane:hover,
+.scroll-pane:pressed
+{
+    -fx-vbar-policy : as-needed;
+}
+
+/* ARROW SHAPES */
+.scroll-bar:horizontal > .decrement-button > .decrement-arrow {
+    -fx-shape: null;
+}
+
+.scroll-bar:horizontal > .increment-button > .increment-arrow {
+    -fx-shape: null;
+}
+
+.scroll-bar:vertical > .decrement-button > .decrement-arrow {
+    -fx-shape: null;
+}
+
+.scroll-bar:vertical > .increment-button > .increment-arrow {
+    -fx-shape: null;
+}
+
+.scroll-bar:disabled {
+    -fx-opacity: 0.4;
+}
+
+.scroll-bar
+{
+    -fx-padding : 0px;
+    -fx-background-insets : 0px;
+    -fx-background-color : transparent;
+}
+
+.scroll-pane .viewport,
+.scroll-pane .corner
+{
+    -fx-border-color : transparent;
+    -fx-background-color : transparent;
+}
+
+.scroll-pane
+{
+    -fx-background-color : transparent;
+}
+
+.scroll-bar .thumb,
+.scroll-bar .thumb:hover,
+.scroll-bar .thumb:hover:pressed
+{
+    -fx-padding : 0px;
+    -fx-background-radius : 0px;
+    -fx-background-insets : 0px;
+    -fx-background-color : derive(-dark-gray, 30%);
+}
+
+
+.scroll-bar > .increment-button,
+.scroll-bar > .decrement-button
+{
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-opacity : 0;
+}
+
+.scroll-bar:hover > .increment-button,
+.scroll-bar:hover > .decrement-button
+{
+    -fx-background-color: transparent;
+    -fx-background-color : derive(-dark-gray, 30%);
+}
+
+.scroll-bar:pressed > .increment-button,
+.scroll-bar:pressed > .decrement-button
+{
+    -fx-background-color: transparent;
+    -fx-background-color : -dark-gray;
+}
+
+.list-view:focused .virtual-flow .scroll-bar:vertical
+{
+    /* -fx-background-color: red; */
+    -fx-border-color : transparent;
+}
+
+
+.progress-bar {
+    -fx-indeterminate-bar-length: 60;
+    -fx-indeterminate-bar-escape: true;
+    -fx-indeterminate-bar-flip: true;
+    -fx-indeterminate-bar-animation-time: 2;
+}
+/*进度条颜色*/
+.progress-bar > .bar {
+    -fx-background-color: #2255ff;
+}
+.progress-bar:indeterminate > .bar {
+    -fx-background-color: linear-gradient(to left, transparent, -fx-accent);
+}
+/*背景*/
+.progress-bar > .track {
+    -fx-background-color:#ffffff;
+    /*-fx-background-insets: 0, 0 0 1 0, 1 1 2 1;*/
+    /*-fx-background-radius: 4, 3, 2;*/
+}
+
+.btn{
+    -fx-background-color: DODGERBLUE;
+    -fx-text-fill:#FFF;
+}
+.my-table .table-row-cell:selected{
+    -fx-background-color: #5ac3ff;
+}
