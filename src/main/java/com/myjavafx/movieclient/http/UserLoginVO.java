@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserLoginVO {
     private String role;
+    private String userId;
 }

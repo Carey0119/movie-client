@@ -6,10 +6,7 @@ import com.jfoenix.controls.JFXProgressBar;
 import com.jfoenix.controls.JFXTextField;
 import com.myjavafx.movieclient.MovieClientApplication;
 import com.myjavafx.movieclient.constant.RoleConstant;
-import com.myjavafx.movieclient.http.DelayUtil;
-import com.myjavafx.movieclient.http.HttpApiService;
-import com.myjavafx.movieclient.http.ResultVO;
-import com.myjavafx.movieclient.http.UserLoginVO;
+import com.myjavafx.movieclient.http.*;
 import com.myjavafx.movieclient.view.ClientView;
 import com.myjavafx.movieclient.view.ManagerView;
 import com.myjavafx.movieclient.view.RegisterView;
@@ -117,6 +114,8 @@ public class LoginController implements Initializable {
                             } else {
                                 MovieClientApplication.showView(ClientView.class);
                             }
+                            UserInfoConstant.userId = response.body().getData().getUserId();
+                            UserInfoConstant.role = response.body().getData().getRole();
 
                         } else {
                             errorLabel.setText(response.body().getMsg());

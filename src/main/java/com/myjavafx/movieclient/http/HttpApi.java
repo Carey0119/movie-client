@@ -83,14 +83,28 @@ public interface HttpApi {
      * @param movieType
      * @return
      */
-    @Multipart
     @POST("movie/add")
-    Call<ResultVO> addMovie(@Part MultipartBody.Part movieName,
-                            @Part MultipartBody.Part movieDesc,
-                            @Part MultipartBody.Part actor,
-                            @Part MultipartBody.Part movieType,
-                            @Part MultipartBody.Part part);
+    Call<ResultVO> addMovie(@Query("movieName") String movieName,
+                            @Query("movieDesc")String movieDesc,
+                            @Query("actor") String actor,
+                            @Query("movieType")String movieType);
 
+    /**
+     * 添加点击量
+     * @return
+     */
+    @POST("movie/click/add")
+    Call<ResultVO> clickAdd(@Query("movieId")String movieId);
+
+    /**
+     * 添加评分
+     * @return
+     */
+    @POST("movie/rating/add")
+    Call<ResultVO> clickAdd(@Query("movieId")String movieId,
+                            @Query("userId")String userId,
+                            @Query("rating")String rating
+    );
     /**
      * 数量统计
      * @return
@@ -111,4 +125,6 @@ public interface HttpApi {
      */
     @GET("statistics/movie/type/chart")
     Call<ResultVO<PageVO<ChartItemVO>>> movieTypeStatistics();
+
+
 }

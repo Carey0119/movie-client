@@ -112,11 +112,16 @@ public class StatisticsController implements Initializable {
             public void onResponse(Call<ResultVO<PageVO<ChartItemVO>>> call, Response<ResultVO<PageVO<ChartItemVO>>> response) {
                 if (response.body().getCode() == 1){
                     List<ChartItemVO> chartItemVOList = response.body().getData().getList();
-                    XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-                    for (ChartItemVO chartItemVO : chartItemVOList) {
-                        series.getData().add(new XYChart.Data<>(chartItemVO.getChartX(),chartItemVO.getChartY()));
-                    }
-                    ageLineChart.getData().add(series);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+                            for (ChartItemVO chartItemVO : chartItemVOList) {
+                                series.getData().add(new XYChart.Data<>(chartItemVO.getChartX(),chartItemVO.getChartY()));
+                            }
+                            ageLineChart.getData().add(series);
+                        }
+                    });
                 }
 
             }
@@ -138,11 +143,16 @@ public class StatisticsController implements Initializable {
             public void onResponse(Call<ResultVO<PageVO<ChartItemVO>>> call, Response<ResultVO<PageVO<ChartItemVO>>> response) {
                 if (response.body().getCode() == 1){
                     List<ChartItemVO> chartItemVOList = response.body().getData().getList();
-                    XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-                    for (ChartItemVO chartItemVO : chartItemVOList) {
-                        series.getData().add(new XYChart.Data<>(chartItemVO.getChartX(),chartItemVO.getChartY()));
-                    }
-                    movieTypeBarChart.getData().add(series);
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+                            for (ChartItemVO chartItemVO : chartItemVOList) {
+                                series.getData().add(new XYChart.Data<>(chartItemVO.getChartX(),chartItemVO.getChartY()));
+                            }
+                            movieTypeBarChart.getData().add(series);
+                        }
+                    });
                 }
             }
 

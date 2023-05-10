@@ -15,7 +15,7 @@ public class MovieVO {
     private String movieName;
     private String movieType;
     private String actor;
-    private Integer score;
+    private String score;
     private Integer clickCount;
     private String mainPicPath;
     private String movieDesc;

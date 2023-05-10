@@ -17,22 +17,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.FileChooser;
-import javafx.stage.Stage;
 import javafx.util.Callback;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import org.apache.logging.log4j.util.Strings;
 import retrofit2.Call;
 import retrofit2.Response;
 
@@ -79,13 +78,10 @@ public class MovieManagerController extends BaseTableViewController<MovieVO> imp
     @FXML
     private JFXTextField movieTypeTextField;
     @FXML
-    private Label imagePathLabel;
-    @FXML
     private Label errorLabel;
 
 
     private JFXAlert addMovieAlert;
-    private JFXAlert movieDetailAlert;
     private String currentSelectedDetailMovieId;
     private File currentFile;
 
@@ -177,83 +173,63 @@ public class MovieManagerController extends BaseTableViewController<MovieVO> imp
     void addButtonAction(ActionEvent event) throws IOException {
 //        showTips(mainStackPane);
         // 防止快速点击，弹出多个
-        if (addMovieAlert != null){
+        if (addMovieAlert != null) {
             return;
         }
         addMovieAlert = showCustomPopView(ManagerEnumView.MODULE_MOVIE_ADD);
         errorLabel.setText("");
     }
+
     @FXML
     void closeButtonAction(ActionEvent event) {
         addMovieAlert.close();
         addMovieAlert = null;
     }
+
     @FXML
     void addMovieAction(ActionEvent event) {
         if (
                 movieNameTextField.validate() &&
-            actorTextField.validate() &&
-                movieTypeTextField.validate() &&
-                movieDescTextArea.validate()
+                        actorTextField.validate() &&
+                        movieTypeTextField.validate() &&
+                        movieDescTextArea.validate()
         ){
-            if (Strings.isBlank(imagePathLabel.getText())){
-                errorLabel.setText("请选择图片");
-            }else {
-                RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), currentFile);
-                MultipartBody.Part imageBodyPart = MultipartBody.Part.createFormData("file", currentFile.getName(), imageBody);
-                MultipartBody.Part movieNamePart = MultipartBody.Part.createFormData("movieName", movieNameTextField.getText());
-                MultipartBody.Part movieDescPart = MultipartBody.Part.createFormData("movieDesc", movieDescTextArea.getText());
-                MultipartBody.Part actorPart = MultipartBody.Part.createFormData("actor", actorTextField.getText());
-                MultipartBody.Part movieTypePart = MultipartBody.Part.createFormData("movieType", movieTypeTextField.getText());
-                Call<ResultVO> resultVOCall = HttpApiService.getInstance().httpApi.addMovie(movieNamePart,movieDescPart,actorPart,movieTypePart, imageBodyPart);
-                resultVOCall.enqueue(new retrofit2.Callback<ResultVO>() {
-                    @Override
-                    public void onResponse(Call<ResultVO> call, Response<ResultVO> response) {
-                        if (response.body().getCode() == 1){
-                                addMovieAlert.close();
-                                getDataFromNet(1);
-                        }else {
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    errorLabel.setText(response.body().getErr());
-                                }
-                            });
-                        }
-                    }
 
-                    @Override
-                    public void onFailure(Call<ResultVO> call, Throwable throwable) {
+            Call<ResultVO> resultVOCall = HttpApiService.getInstance().httpApi.addMovie(movieNameTextField.getText(), movieDescTextArea.getText(), actorTextField.getText(), movieTypeTextField.getText());
+            resultVOCall.enqueue(new retrofit2.Callback<ResultVO>() {
+                @Override
+                public void onResponse(Call<ResultVO> call, Response<ResultVO> response) {
+                    if (response.body().getCode() == 1) {
+                        addMovieAlert.close();
+                        getDataFromNet(1);
+                    } else {
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
-                                errorLabel.setText(throwable.toString());
+                                errorLabel.setText(response.body().getErr());
                             }
                         });
                     }
-                });
-            }
+                }
 
+                @Override
+                public void onFailure(Call<ResultVO> call, Throwable throwable) {
+                    Platform.runLater(new Runnable() {
+                        @Override
+                        public void run() {
+                            errorLabel.setText(throwable.toString());
+                        }
+                    });
+                }
+            });
         }
-    }
-    @FXML
-    void closeDetailButtonAction(ActionEvent event){
-        movieDetailAlert.close();
-        movieDetailAlert = null;
-    }
-
-    @FXML
-    void openFileAction(ActionEvent event) {
-        FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(new Stage());
-        System.out.println(file.getAbsolutePath());
-        currentFile = file;
-        imagePathLabel.setText(file.getAbsolutePath());
 
 
     }
+
     /**
      * 删除电影
+     *
      * @param movieId
      */
     public void deleteItem(String movieId) {
@@ -339,35 +315,40 @@ public class MovieManagerController extends BaseTableViewController<MovieVO> imp
                     @Override
                     public TableCell call(final TableColumn<MovieVO, Object> param) {
                         final TableCell<MovieVO, Object> cell = new TableCell<MovieVO, Object>() {
-                           final  HBox hBox = new HBox();{
-                                Button deleteBtn = new Button("删除");{
+                            final HBox hBox = new HBox();
+
+                            {
+                                Button deleteBtn = new Button("删除");
+                                {
                                     deleteBtn.getStyleClass().add("btn");
                                     deleteBtn.setOnAction(event -> {
                                         deleteItem(tableView.getItems().get(getIndex()).getMovieId());
                                     });
                                 }
 
-                                Button detailBtn = new Button("详情");{
+                                Button detailBtn = new Button("详情");
+                                {
                                     detailBtn.getStyleClass().add("btn");
                                     detailBtn.setOnAction(event -> {
                                         currentSelectedDetailMovieId = tableView.getItems().get(getIndex()).getMovieId();
-                                        // 防止快速点击，弹出多个
-                                        if (movieDetailAlert != null){
-                                            return;
+                                        // 弹出框对应的FXML文件
+                                        FXMLLoader loader = new FXMLLoader(getClass().getResource(ManagerEnumView.MODULE_MOVIE_DETAIL.fxmlPath));
+                                        try {
+                                            Parent parent = loader.load();
+                                            JFXAlert  movieDetailAlert = showCustomPopView2(parent);
+                                            MovieVO movieVO = tableView.getItems().get(getIndex());
+                                            MovieDetailController target = loader.getController();
+                                            target.setDesc(movieVO.getMovieDesc());
+                                            target.setAlertView(movieDetailAlert);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
                                         }
-                                        movieDetailAlert = showCustomPopView(ManagerEnumView.MODULE_MOVIE_DETAIL);
-                                        MovieVO movieVO = tableView.getItems().get(getIndex());
-                                        movieDescTestArea.setWrapText(true);
-                                        movieDescTestArea.setText(movieVO.getMovieDesc());
-                                        mainPicImageView.setFitWidth(135);
-                                        mainPicImageView.setImage(new Image(movieVO.getMainPicPath()));
                                     });
                                 }
-                                hBox.getChildren().addAll(deleteBtn,detailBtn);
-                               hBox.setSpacing(10);
-                               hBox.setAlignment(Pos.CENTER);
+                                hBox.getChildren().addAll(deleteBtn, detailBtn);
+                                hBox.setSpacing(10);
+                                hBox.setAlignment(Pos.CENTER);
                             }
-
 
 
                             @Override

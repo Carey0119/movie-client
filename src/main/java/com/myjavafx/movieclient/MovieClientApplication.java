@@ -1,5 +1,6 @@
 package com.myjavafx.movieclient;
 
+import com.myjavafx.movieclient.view.ClientView;
 import com.myjavafx.movieclient.view.LaunchView;
 import com.myjavafx.movieclient.view.LoginView;
 import com.myjavafx.movieclient.view.ManagerView;
@@ -20,7 +21,7 @@ public class MovieClientApplication extends AbstractJavaFxApplicationSupport {
 
     public static void main(String[] args) {
 
-        launch(MovieClientApplication.class, ManagerView.class, new LaunchView(), args);
+        launch(MovieClientApplication.class, LoginView.class, new LaunchView(), args);
         //SpringApplication.run(MovieClientApplication.class, args);
     }
 

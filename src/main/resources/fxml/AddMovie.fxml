@@ -76,15 +76,10 @@
                     <RequiredFieldValidator message="请输入电影简介">
                         <FontIcon iconLiteral="fas-exclamation-triangle" />
                     </RequiredFieldValidator>
-                    <RegexValidator message="请输入10-5000个字电影类型" regexPattern="^[^\x00-\xff]{10,5000}$">
-                        <FontIcon iconLiteral="fas-exclamation-triangle" />
-                    </RegexValidator>
                 </validators>
             </JFXTextArea>
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
-                  <Label fx:id="imagePathLabel" />
-                  <Button fx:id="picButton" minWidth="50.0" mnemonicParsing="false" onAction="#openFileAction" styleClass="btn" text="图片" />
                </children>
             </HBox>
              <JFXTextField id="login-text-field" fx:id="movieNameTextField" labelFloat="true" maxWidth="1.7976931348623157E308" prefWidth="240.0" promptText="电影名称" GridPane.rowIndex="1">
@@ -95,9 +90,6 @@
                      <RequiredFieldValidator message="请输入电影名称">
                          <FontIcon iconLiteral="fas-exclamation-triangle" />
                      </RequiredFieldValidator>
-                     <RegexValidator message="请输入2-50个字电影名称" regexPattern="^[^\x00-\xff]{2,50}$">
-                         <FontIcon iconLiteral="fas-exclamation-triangle" />
-                     </RegexValidator>
                  </validators>
              </JFXTextField>
              <JFXTextField id="login-text-field" fx:id="actorTextField" labelFloat="true" maxWidth="1.7976931348623157E308" prefWidth="240.0" promptText="主演" GridPane.rowIndex="2">
@@ -108,9 +100,6 @@
                      <RequiredFieldValidator message="请输入主演">
                          <FontIcon iconLiteral="fas-exclamation-triangle" />
                      </RequiredFieldValidator>
-                     <RegexValidator message="请输入2-50个字主演" regexPattern="^[^\x00-\xff]{2,50}$">
-                         <FontIcon iconLiteral="fas-exclamation-triangle" />
-                     </RegexValidator>
                  </validators>
              </JFXTextField>
              <JFXTextField id="login-text-field" fx:id="movieTypeTextField" labelFloat="true" maxWidth="1.7976931348623157E308" prefWidth="240.0" promptText="电影类型" GridPane.rowIndex="3">
@@ -121,9 +110,6 @@
                      <RequiredFieldValidator message="请输入电影类型">
                          <FontIcon iconLiteral="fas-exclamation-triangle" />
                      </RequiredFieldValidator>
-                     <RegexValidator message="请输入2-50个字电影类型" regexPattern="^[^\x00-\xff]{2,50}$">
-                         <FontIcon iconLiteral="fas-exclamation-triangle" />
-                     </RegexValidator>
                  </validators>
              </JFXTextField>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="5">
