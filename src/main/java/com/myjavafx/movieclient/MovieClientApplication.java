@@ -4,9 +4,7 @@ import com.myjavafx.movieclient.view.LaunchView;
 import com.myjavafx.movieclient.view.LoginView;
 import com.myjavafx.movieclient.view.ManagerView;
 import de.felixroske.jfxsupport.AbstractJavaFxApplicationSupport;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -19,9 +17,10 @@ import java.util.Collection;
 public class MovieClientApplication extends AbstractJavaFxApplicationSupport {
 
     public static Stage myStage;
+
     public static void main(String[] args) {
 
-        launch(MovieClientApplication.class, LoginView.class,new LaunchView(), args);
+        launch(MovieClientApplication.class, ManagerView.class, new LaunchView(), args);
         //SpringApplication.run(MovieClientApplication.class, args);
     }
 

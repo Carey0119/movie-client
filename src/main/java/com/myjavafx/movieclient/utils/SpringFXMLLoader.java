@@ -11,7 +11,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
 
 /**
  * <b>ClassName</b>: SpringFXMLLoader <br/>
@@ -25,37 +24,38 @@ import java.util.ResourceBundle;
  *
  * @author pdai
  * @version Apr 22, 2019
- *
  */
 @Component
 public class SpringFXMLLoader {
-	private final ApplicationContext context;
+    private final ApplicationContext context;
 
 
-	@Autowired
-	public SpringFXMLLoader(ApplicationContext context) {
-		this.context = context;
-	}
+    @Autowired
+    public SpringFXMLLoader(ApplicationContext context) {
+        this.context = context;
+    }
 
     /**
      * 加载path页面
+     *
      * @param fxmlPath
      * @return
      * @throws IOException
      */
-	public Parent load(String fxmlPath) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setControllerFactory(context::getBean); // Spring now FXML Controller Factory
-		loader.setLocation(getClass().getResource(fxmlPath));
-		return loader.load();
-	}
+    public Parent load(String fxmlPath) throws IOException {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setControllerFactory(context::getBean); // Spring now FXML Controller Factory
+        loader.setLocation(getClass().getResource(fxmlPath));
+        return loader.load();
+    }
 
 
     /**
      * 新打开一个页面
+     *
      * @param view
      */
-    public void showPopWindow(final ManagerEnumView view)  {
+    public void showPopWindow(final ManagerEnumView view) {
         Parent viewRootNodeHierarchy = null;
         try {
             viewRootNodeHierarchy = load(view.fxmlPath);

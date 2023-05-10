@@ -101,7 +101,7 @@
                 <configuration>
                     <mainClass>com.myjavafx.movieclient.MovieClientApplication</mainClass>
                     <!-- 公司名称 -->
-                    <vendor>Ceadeal</vendor>
+                    <vendor>movie</vendor>
                     <!-- 应用名称 ${project.build.finalName} = ${project.artifactId}-${project.version} -->
                    <appName>movie</appName>
                     <!-- 发行版本 -->

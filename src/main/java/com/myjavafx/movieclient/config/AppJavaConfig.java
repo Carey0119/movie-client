@@ -2,26 +2,14 @@ package com.myjavafx.movieclient.config;
 
 import com.myjavafx.movieclient.utils.ExceptionWriter;
 import com.myjavafx.movieclient.utils.SpringFXMLLoader;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
 
 import javax.annotation.Resource;
 import java.io.StringWriter;
-import java.util.ResourceBundle;
 
-/**
-* <b>ClassName</b>: AppJavaConfig <br/>
-*
-* <b>Description</b>: AppJavaConfig <br/>
-*
-* <b>Date</b>: Apr 22, 2019 1:13:50 PM <br/>
-*
-* @author pdai
-* @version Apr 22, 2019
-*
-*/
+
 @Configuration
 public class AppJavaConfig {
 
@@ -30,6 +18,7 @@ public class AppJavaConfig {
 
     /**
      * Useful when dumping stack trace to a string for logging.
+     *
      * @return ExceptionWriter contains logging utility methods
      */
     @Bean

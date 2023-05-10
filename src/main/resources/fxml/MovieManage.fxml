@@ -22,6 +22,15 @@
 <?import javafx.scene.text.Font?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<StackPane fx:id="rootPane"  style="-fx-background-color: #0000ff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.control.ScrollPane?>
+<StackPane fx:id="rootPane" style="-fx-background-color: #0000ff;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <ScrollPane prefHeight="200.0" prefWidth="200.0">
+            <content>
+                <VBox prefHeight="800.0" prefWidth="600.0">
 
+                </VBox>
+            </content>
+        </ScrollPane>
+    </children>
 </StackPane>
