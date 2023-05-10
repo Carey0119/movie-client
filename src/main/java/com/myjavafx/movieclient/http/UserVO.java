@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class UserVO {
+    private Integer userNo;
     private String userId;
     private String username;
     private String age;

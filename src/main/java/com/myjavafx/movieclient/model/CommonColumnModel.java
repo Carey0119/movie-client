@@ -14,4 +14,5 @@ public class CommonColumnModel {
     private double width;
     private boolean ifSort;
     private String refName;
+    private String cssStyle;
 }

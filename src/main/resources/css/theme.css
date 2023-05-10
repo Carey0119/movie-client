@@ -134,4 +134,8 @@
 
 .btn{
     -fx-background-color: DODGERBLUE;
+    -fx-text-fill:#FFF;
+}
+.my-table .table-row-cell:selected{
+    -fx-background-color: #5ac3ff;
 }

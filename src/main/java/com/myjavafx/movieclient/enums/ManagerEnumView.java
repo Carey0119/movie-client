@@ -9,10 +9,20 @@ public enum ManagerEnumView {
      * 电影管理
      */
     MODULE_MOVIE_MANAGE("电影管理", "/fxml/MovieManage.fxml"),
+
     /**
      * 用户管理
      */
-    MODULE_USER_MANAGE("用户管理", "/fxml/UserManage.fxml");
+    MODULE_USER_MANAGE("用户管理", "/fxml/UserManage.fxml"),
+    /**
+     * 电影详情
+     */
+    MODULE_MOVIE_DETAIL("电影详情", "/fxml/MovieDesc.fxml"),
+
+    /**
+     * 添加电影
+     */
+    MODULE_MOVIE_ADD("添加电影", "/fxml/AddMovie.fxml");
     /**
      * 标题
      */

@@ -114,7 +114,7 @@
                                 </RegexValidator>
                             </validators>
                         </JFXTextField>
-                        <JFXComboBox fx:id="sexComboBox" labelFloat="true" promptText="性别">
+                        <JFXComboBox fx:id="sexComboBox"  labelFloat="true" promptText="性别">
                            <padding>
                               <Insets left="25.0" top="8.0" />
                            </padding>

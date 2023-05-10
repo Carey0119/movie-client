@@ -1,8 +1,8 @@
 package com.myjavafx.movieclient.http;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
-import retrofit2.http.POST;
-import retrofit2.http.Query;
+import retrofit2.http.*;
 
 public interface HttpApi {
     /**
@@ -30,4 +30,85 @@ public interface HttpApi {
                                              @Query("age") String age,
                                              @Query("sex") String sex,
                                              @Query("address") String address);
+
+    /**
+     * 用户列表
+     * @param pageNum 页数
+     * @param pageSize 第页大小
+     * @param username 用户名
+     * @param createTimeStr 用户注册时间 eg：2022-02-02
+     * @return
+     */
+    @GET("user/list")
+    Call<ResultVO<PageVO<UserVO>>> userList(@Query("pageNum") Integer pageNum,
+                                @Query("pageSize") Integer pageSize,
+                                @Query("username") String username,
+                                @Query("createTimeStr") String createTimeStr);
+
+    /**
+     * 删除用户
+     * @param userId
+     * @return
+     */
+    @POST("user/delete")
+    Call<ResultVO> userDelete(@Query("userId") String userId);
+
+    /**
+     * 用户列表
+     * @param pageNum 页数
+     * @param pageSize 第页大小
+     * @param movieName 用户名
+     * @param actor 演员
+     * @return
+     */
+    @GET("movie/list")
+    Call<ResultVO<PageVO<MovieVO>>> movieList(@Query("pageNum") Integer pageNum,
+                                            @Query("pageSize") Integer pageSize,
+                                            @Query("movieName") String movieName,
+                                              @Query("actor") String actor);
+
+    /**
+     * 删除电影
+     * @param movieId 电影id
+     * @return
+     */
+    @POST("movie/delete")
+    Call<ResultVO> movieDelete(@Query("movieId") String movieId);
+
+    /**
+     * 添加电影
+     * @param movieName
+     * @param movieDesc
+     * @param actor
+     * @param movieType
+     * @return
+     */
+    @Multipart
+    @POST("movie/add")
+    Call<ResultVO> addMovie(@Part MultipartBody.Part movieName,
+                            @Part MultipartBody.Part movieDesc,
+                            @Part MultipartBody.Part actor,
+                            @Part MultipartBody.Part movieType,
+                            @Part MultipartBody.Part part);
+
+    /**
+     * 数量统计
+     * @return
+     */
+    @GET("statistics/num")
+    Call<ResultVO<NumStatisticsVO>> numStatistics();
+
+    /**
+     * 用户年龄分布
+     * @return
+     */
+    @GET("statistics/age/chart")
+    Call<ResultVO<PageVO<ChartItemVO>>> ageChartStatistics();
+
+    /**
+     * 电影类型数量分布
+     * @return
+     */
+    @GET("statistics/movie/type/chart")
+    Call<ResultVO<PageVO<ChartItemVO>>> movieTypeStatistics();
 }
